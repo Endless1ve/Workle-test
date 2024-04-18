@@ -1,9 +1,12 @@
 <template>
-  <div class="list"></div>
+  <div class="list">
+    <PostItem v-for="post in posts" :key="post.id" :post="post" />
+  </div>
 </template>
 
 <script setup>
   import posts from "../../mocked-posts.json";
+  import PostItem from "@/components/PostItem.vue";
 </script>
 
 <style lang="scss" scoped>
