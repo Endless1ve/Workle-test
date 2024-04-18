@@ -1,0 +1,19 @@
+$main-font: "RobotoCondensed", Arial, Helvetica, sans-serif;
+$main-text-color: #333333;
+$additional-text-color: #8d8d8d;
+
+@mixin flex-row {
+  display: flex;
+  flex-direction: row;
+}
+
+@mixin flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+@mixin grid-centered {
+  display: grid;
+  justify-items: center;
+  justify-content: center;
+}
