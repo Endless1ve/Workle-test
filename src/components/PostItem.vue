@@ -1,9 +1,13 @@
 <template>
-  <article class="post"></article>
+  <article class="post">
+    <ProfileItem :user="post.user" />
+  </article>
 </template>
 
 <script setup>
   import { defineProps } from "vue";
+
+  import ProfileItem from "@/components/ProfileItem.vue";
 
   const props = defineProps({
     post: {
