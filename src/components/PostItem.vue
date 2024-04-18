@@ -2,6 +2,7 @@
   <article class="post">
     <ProfileItem :user="post.user" />
     <PostImage :source="post.urls.small" :alt="post.alt_description" />
+    <ViewsItem :postId="post.id" />
   </article>
 </template>
 
@@ -10,6 +11,7 @@
 
   import ProfileItem from "@/components/ProfileItem.vue";
   import PostImage from "@/components/UI/PostImage.vue";
+  import ViewsItem from "@/components/ViewsItem.vue";
 
   const props = defineProps({
     post: {
