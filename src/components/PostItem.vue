@@ -1,7 +1,7 @@
 <template>
   <article class="post">
     <ProfileItem :user="post.user" />
-    <PostImage :source="post.urls.small" :alt="post.alt_description" />
+    <PostImage :source="post.urls.regular" :alt="post.alt_description" />
     <ViewsItem :postId="post.id" />
   </article>
 </template>
