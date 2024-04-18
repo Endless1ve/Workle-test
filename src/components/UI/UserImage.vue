@@ -1,5 +1,5 @@
 <template>
-  <img class="profileImage" :src="source" :alt="'Avatar of user' + alt" />
+  <img class="profileImage" :src="source" :alt="'Avatar of user ' + alt" />
 </template>
 
 <script setup>
