@@ -54,5 +54,9 @@
     font-size: 12px;
     line-height: 117%;
     color: $additional-text-color;
+
+    @media screen and (min-width: 1024px) {
+      font-size: 16px;
+    }
   }
 </style>

@@ -47,11 +47,19 @@
     font-weight: 700;
     font-size: 12px;
     color: $main-text-color;
+
+    @media screen and (min-width: 1024px) {
+      font-size: 16px;
+    }
   }
 
   .profileUsername {
     font-weight: 400;
     font-size: 12px;
     color: $additional-text-color;
+
+    @media screen and (min-width: 1024px) {
+      font-size: 16px;
+    }
   }
 </style>
