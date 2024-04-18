@@ -1,5 +1,5 @@
 <template>
-  <div class="profile">
+  <div class="profile" @click="routeToProfile">
     <div class="profileImage">
       <UserImage :source="user.profile_image.medium" :alt="user.username" />
     </div>
@@ -12,6 +12,7 @@
 
 <script setup>
   import { defineProps } from "vue";
+  import { useRouter } from "vue-router";
   import UserImage from "@/components/UI/UserImage.vue";
 
   const props = defineProps({
@@ -20,6 +21,15 @@
       required: true,
     },
   });
+
+  const router = useRouter();
+
+  const routeToProfile = () => {
+    router.push({
+      name: "profile",
+      params: { username: props.user.username },
+    });
+  };
 </script>
 
 <style lang="scss" scoped>
