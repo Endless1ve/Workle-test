@@ -1,9 +1,8 @@
 <template>
   <div class="profile">
-    <img
-      class="profileImage"
-      :src="user.profile_image.medium"
-      :alt="'Avatar of user' + user.username" />
+    <div class="profileImage">
+      <UserImage :source="user.profile_image.medium" :alt="user.username" />
+    </div>
     <div class="profileInfo">
       <p class="profileName">{{ user.name }}</p>
       <p class="profileUsername">@{{ user.username }}</p>
@@ -13,6 +12,8 @@
 
 <script setup>
   import { defineProps } from "vue";
+  import UserImage from "@/components/UI/UserImage.vue";
+
   const props = defineProps({
     user: {
       type: Object,
@@ -32,8 +33,10 @@
 
   .profileImage {
     width: 30px;
-    height: 30px;
-    border-radius: 50%;
+
+    @media screen and (min-width: 1024px) {
+      width: 50px;
+    }
   }
 
   .profileInfo {
