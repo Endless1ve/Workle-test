@@ -1,15 +1,19 @@
 <template>
-  <div class="profile">
-    <div class="image">
-      <UserImage
-        v-if="user.profile_image"
-        :source="user.profile_image.large"
-        :alt="user.username" />
-    </div>
-    <div class="profileInfo">
-      <p class="profileName">{{ user.name }}</p>
-      <p v-if="user.bio" class="profileBio">{{ user.bio }}</p>
-      <p v-else class="profileUsername">{{ "@" + user.username }}</p>
+  <div class="content">
+    <PreloaderBlock v-if="isLoading" />
+    <ErrorItem v-else-if="isError" />
+    <div class="profile" v-else>
+      <div class="image">
+        <UserImage
+          v-if="user.profile_image"
+          :source="user.profile_image.large"
+          :alt="user.username" />
+      </div>
+      <div class="profileInfo">
+        <p class="profileName">{{ user.name }}</p>
+        <p v-if="user.bio" class="profileBio">{{ user.bio }}</p>
+        <p v-else class="profileUsername">{{ "@" + user.username }}</p>
+      </div>
     </div>
   </div>
 </template>
@@ -18,15 +22,22 @@
   import { ref, onMounted } from "vue";
   import { useRoute } from "vue-router";
   import axios from "axios";
+
   import UserImage from "@/components/UI/UserImage.vue";
+  import PreloaderBlock from "@/components/PreloaderBlock.vue";
+  import ErrorItem from "@/components/UI/ErrorItem.vue";
 
   const route = useRoute();
   const username = route.params.username;
 
   const user = ref({});
 
+  const isLoading = ref(false);
+  const isError = ref(false);
+
   const fetchUser = async () => {
     try {
+      isLoading.value = true;
       const response = await axios.get(
         `https://api.unsplash.com/users/${username}`,
         {
@@ -37,7 +48,9 @@
       );
       user.value = response.data;
     } catch (error) {
-      console.log(error);
+      isError.value = true;
+    } finally {
+      isLoading.value = false;
     }
   };
 

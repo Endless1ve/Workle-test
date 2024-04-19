@@ -35,7 +35,7 @@
       isLoading.value = true;
       const response = await axios.get("https://api.unsplash.com/photos", {
         headers: {
-          Authorization: `Client-ID ${process.env.VUE_APP_API_KEY}`,
+          Authorization: `Client-ID ${process.env.VUE_APP_API_KEY_SECOND}`,
         },
         params: {
           page: currentPage.value,

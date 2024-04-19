@@ -41,6 +41,20 @@
     padding: 10px;
   }
 
+  @media (hover: hover) {
+    .profile:hover {
+      cursor: pointer;
+
+      .profileInfo {
+        text-decoration: underline dashed $main-text-color;
+      }
+
+      .profileName {
+        text-decoration: underline dashed $additional-text-color;
+      }
+    }
+  }
+
   .profileImage {
     width: 30px;
 
