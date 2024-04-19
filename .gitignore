@@ -3,4 +3,4 @@ config
 node_modules
 /dist
 .env.local
-
+mocked-posts.json
