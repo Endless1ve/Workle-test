@@ -2,11 +2,49 @@
   <div class="list">
     <PostItem v-for="post in posts" :key="post.id" :post="post" />
   </div>
+  <PaginationItem
+    :totalPages="limitPages"
+    :currentPage="currentPage"
+    @updatePage="updatePage" />
 </template>
 
 <script setup>
-  import posts from "../../mocked-posts.json";
+  import { ref, onMounted } from "vue";
+  import axios from "axios";
+
   import PostItem from "@/components/PostItem.vue";
+  import PaginationItem from "@/components/PaginationItem.vue";
+
+  const posts = ref([]);
+  const currentPage = ref(1);
+  const limitPages = ref(59);
+  const limit = 10;
+
+  const fetchPosts = async () => {
+    try {
+      const response = await axios.get("https://api.unsplash.com/photos", {
+        headers: {
+          Authorization: `Client-ID ${process.env.VUE_APP_API_KEY}`,
+        },
+        params: {
+          page: currentPage.value,
+          per_page: limit,
+        },
+      });
+      posts.value = response.data;
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const updatePage = (page) => {
+    currentPage.value = page;
+    fetchPosts();
+  };
+
+  onMounted(() => {
+    fetchPosts();
+  });
 </script>
 
 <style lang="scss" scoped>
