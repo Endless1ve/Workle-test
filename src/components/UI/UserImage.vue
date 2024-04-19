@@ -19,6 +19,7 @@
 
 <style lang="scss" scoped>
   .profileImage {
+    border: 1px solid $additional-text-color;
     border-radius: 50%;
   }
 </style>
