@@ -1,11 +1,12 @@
 <template>
   <div class="list">
     <PostItem v-for="post in posts" :key="post.id" :post="post" />
+    <PreloaderBlock v-if="isLoading" />
+    <PaginationItem
+      :totalPages="limitPages"
+      :currentPage="currentPage"
+      @updatePage="updatePage" />
   </div>
-  <PaginationItem
-    :totalPages="limitPages"
-    :currentPage="currentPage"
-    @updatePage="updatePage" />
 </template>
 
 <script setup>
@@ -14,14 +15,19 @@
 
   import PostItem from "@/components/PostItem.vue";
   import PaginationItem from "@/components/PaginationItem.vue";
+  import PreloaderBlock from "@/components/PreloaderBlock.vue";
 
   const posts = ref([]);
+
   const currentPage = ref(1);
   const limitPages = ref(59);
   const limit = 10;
 
+  const isLoading = ref(false);
+
   const fetchPosts = async () => {
     try {
+      isLoading.value = true;
       const response = await axios.get("https://api.unsplash.com/photos", {
         headers: {
           Authorization: `Client-ID ${process.env.VUE_APP_API_KEY}`,
@@ -34,6 +40,8 @@
       posts.value = response.data;
     } catch (error) {
       console.log(error);
+    } finally {
+      isLoading.value = false;
     }
   };
 
