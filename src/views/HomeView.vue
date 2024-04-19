@@ -1,5 +1,9 @@
 <template>
-  <div class="home"></div>
+  <section class="home">
+    <PostsList />
+  </section>
 </template>
 
-<script setup></script>
+<script setup>
+  import PostsList from "@/components/PostsList.vue";
+</script>
