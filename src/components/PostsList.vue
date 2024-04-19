@@ -35,7 +35,7 @@
       isLoading.value = true;
       const response = await axios.get("https://api.unsplash.com/photos", {
         headers: {
-          Authorization: `Client-ID ${process.env.VUE_APP_API_KEY_SECOND}`,
+          Authorization: `Client-ID ${process.env.VUE_APP_API_KEY}`,
         },
         params: {
           page: currentPage.value,
@@ -62,7 +62,7 @@
 
 <style lang="scss" scoped>
   .list {
-    padding: 0 0 20px 0;
+    padding: 0 0 70px 0;
     gap: 10px 20px;
     grid-template-columns: minmax(320px, 440px);
     @include grid-centered;
