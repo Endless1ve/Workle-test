@@ -1,11 +1,14 @@
 <template>
-  <div class="list">
-    <PostItem v-for="post in posts" :key="post.id" :post="post" />
+  <div class="content">
     <PreloaderBlock v-if="isLoading" />
-    <PaginationItem
-      :totalPages="limitPages"
-      :currentPage="currentPage"
-      @updatePage="updatePage" />
+    <ErrorItem v-if="isError" />
+    <div class="list" v-if="!isLoading && !isError">
+      <PostItem v-for="post in posts" :key="post.id" :post="post" />
+      <PaginationItem
+        :totalPages="limitPages"
+        :currentPage="currentPage"
+        @updatePage="updatePage" />
+    </div>
   </div>
 </template>
 
@@ -16,6 +19,7 @@
   import PostItem from "@/components/PostItem.vue";
   import PaginationItem from "@/components/PaginationItem.vue";
   import PreloaderBlock from "@/components/PreloaderBlock.vue";
+  import ErrorItem from "@/components/UI/ErrorItem.vue";
 
   const posts = ref([]);
 
@@ -24,6 +28,7 @@
   const limit = 10;
 
   const isLoading = ref(false);
+  const isError = ref(false);
 
   const fetchPosts = async () => {
     try {
@@ -39,7 +44,7 @@
       });
       posts.value = response.data;
     } catch (error) {
-      console.log(error);
+      isError.value = true;
     } finally {
       isLoading.value = false;
     }
