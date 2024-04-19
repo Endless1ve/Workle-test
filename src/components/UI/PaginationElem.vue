@@ -15,6 +15,11 @@
     .elem:hover {
       opacity: 0.5;
     }
+
+    .noHover:hover {
+      opacity: 1;
+      cursor: default;
+    }
   }
 
   .active {

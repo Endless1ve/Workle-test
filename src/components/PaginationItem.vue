@@ -4,7 +4,7 @@
       1
     </PaginationElem>
 
-    <PaginationElem v-if="currentPage > 3 && totalPages > 4">
+    <PaginationElem class="noHover" v-if="currentPage > 3 && totalPages > 4">
       ...
     </PaginationElem>
 
@@ -16,7 +16,9 @@
       {{ page }}
     </PaginationElem>
 
-    <PaginationElem v-if="currentPage < totalPages - 2 && totalPages > 4">
+    <PaginationElem
+      class="noHover"
+      v-if="currentPage < totalPages - 2 && totalPages > 4">
       ...
     </PaginationElem>
 
