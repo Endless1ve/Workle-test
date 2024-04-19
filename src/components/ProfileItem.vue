@@ -46,11 +46,11 @@
       cursor: pointer;
 
       .profileInfo {
-        text-decoration: underline dashed $main-text-color;
+        text-decoration: underline dashed $additional-text-color;
       }
 
       .profileName {
-        text-decoration: underline dashed $additional-text-color;
+        text-decoration: underline dashed $main-text-color;
       }
     }
   }
